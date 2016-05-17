@@ -1,4 +1,5 @@
 FROM jupyter/notebook
+pip install --upgrade pip
 
 # install other packages required for tutorial
 ADD requirements.txt /
