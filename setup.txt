@@ -1,0 +1,12 @@
+docker run -itd --name=lamp_server linode/lamp /bin/bash
+/etc/init.d/apache2 start
+ifconfig
+inet addr:172.17.0.2  Bcast:0.0.0.0  Mask:255.255.0.0
+
+start ipython instance
+docker run --rm -it -p 8888:8888 -v "$(pwd):/notebooks" gizm00/pycon2016
+
+have a config variable to capture the address of the LAMP container
+test with 
+req = requests.get('http://172.17.0.2')
+print(req.text)
