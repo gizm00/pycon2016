@@ -82,6 +82,12 @@ RUN pip2 --no-cache-dir install ipykernel && \
     python3 -m ipykernel.kernelspec && \
     rm -rf /root/.cache
 
+# Install mysql driver
+RUN git clone https://github.com/mysql/mysql-connector-python.git
+RUN cd mysql-connector-python
+RUN python ./setup.py build
+RUN sudo python ./setup.py install
+
 # Move notebook contents into place.
 ADD . /usr/src/jupyter-notebook
 

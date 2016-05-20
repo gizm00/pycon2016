@@ -3,3 +3,4 @@
 __pycache__/
 out.csv
 notebooks/.ipynb_checkpoints/
+mysql-connector-python/
