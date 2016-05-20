@@ -86,24 +86,26 @@ RUN pip2 --no-cache-dir install ipykernel && \
 ADD . /usr/src/jupyter-notebook
 
 # Install dependencies and run tests.
-RUN BUILD_DEPS="nodejs-legacy npm" && \
-    apt-get update -qq && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -yq $BUILD_DEPS && \
-    \
-    pip3 install --no-cache-dir /usr/src/jupyter-notebook && \
-    pip2 install --no-cache-dir widgetsnbextension && \
-    pip3 install --no-cache-dir widgetsnbextension && \
-    \
-    npm cache clean && \
-    apt-get clean && \
-    rm -rf /root/.npm && \
-    rm -rf /root/.cache && \
-    rm -rf /root/.config && \
-    rm -rf /root/.local && \
-    rm -rf /root/tmp && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get purge -y --auto-remove \
-        -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $BUILD_DEPS
+#RUN BUILD_DEPS="nodejs-legacy npm" && \
+#    apt-get update -qq && \
+#    DEBIAN_FRONTEND=noninteractive apt-get install -yq $BUILD_DEPS && \
+#    \
+#    pip3 install --no-cache-dir /usr/src/jupyter-notebook && \
+#    pip2 install --no-cache-dir widgetsnbextension && \
+#    pip3 install --no-cache-dir widgetsnbextension && \
+#    \
+#    npm cache clean && \
+#    apt-get clean && \
+#    rm -rf /root/.npm && \
+#    rm -rf /root/.cache && \
+#    rm -rf /root/.config && \
+ #   rm -rf /root/.local && \
+ #   rm -rf /root/tmp && \
+ #   rm -rf /var/lib/apt/lists/* && \
+ #   apt-get purge -y --auto-remove \
+ #       -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $BUILD_DEPS
+
+RUN pip install notebook
 
 # Run tests.
 # hanging on completion, comment out for now
