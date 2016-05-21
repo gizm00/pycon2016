@@ -6,3 +6,4 @@ lxml==3.4.4
 unidecode==0.4.18
 selenium==2.53.2
 pyvirtualdisplay==0.2
+pymysql==0.7.3

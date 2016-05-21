@@ -37,6 +37,7 @@ RUN apt-get update -qq && \
         ca-certificates \
         curl \
         git \
+	wget \
         language-pack-en \
         libcurl4-openssl-dev \
         libffi-dev \
