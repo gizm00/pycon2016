@@ -1,4 +1,5 @@
 DB_NAME = 'pycon2016'
 DB_USER = 'root'
-DB_PASS = 'pycon2016' 
+DB_PASS = 'Admin2015' 
+DB_HOST = '192.168.99.100'
 LAMP_IP = '172.17.0.3'
