@@ -60,15 +60,6 @@ RUN apt-get update -qq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install mysql driver
-RUN git clone https://github.com/mysql/mysql-connector-python.git /tmp/mysql-connector-python
-RUN cd /tmp/mysql-connector-python
-RUN pwd
-RUN python /tmp/mysql-connector-python/setup.py build
-RUN sudo python /tmp/mysql-connector-python/setup.py install
-
-#ADD install_mysql.sh /
-#RUN source /install_mysql.sh
 
 # Install Tini
 RUN curl -L https://github.com/krallin/tini/releases/download/v0.6.0/tini > tini && \
@@ -144,6 +135,3 @@ WORKDIR /notebooks
 
 EXPOSE 8888
 
-#ENTRYPOINT ["tini", "--"]
-#CMD ["jupyter", "notebook", "--no-browser"]
-#CMD ["start-notebook.sh"]
