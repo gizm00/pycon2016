@@ -61,14 +61,13 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists/*
 
 # Install mysql driver
-#RUN git clone https://github.com/mysql/mysql-connector-python.git
-#ADD mysql-connector-python /
-#RUN cd mysql-connector-python
-#RUN python setup.py build
-#RUN sudo python setup.py install
+RUN git clone https://github.com/mysql/mysql-connector-python.git /
+RUN cd /mysql-connector-python
+RUN python ./setup.py build
+RUN sudo python ./setup.py install
 
-ADD install_mysql.sh /
-RUN source /install_mysql.sh
+#ADD install_mysql.sh /
+#RUN source /install_mysql.sh
 
 # Install Tini
 RUN curl -L https://github.com/krallin/tini/releases/download/v0.6.0/tini > tini && \
