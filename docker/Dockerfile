@@ -85,10 +85,10 @@ RUN pip2 --no-cache-dir install ipykernel && \
 
 # Install mysql driver
 RUN git clone https://github.com/mysql/mysql-connector-python.git
-RUN cd mysql-connector-python
-ADD setup.py /
-RUN python /setup.py build
-RUN sudo python /setup.py install
+ADD mysql-connector-python /
+RUN cd /mysql-connector-python
+RUN python ./setup.py build
+RUN sudo python ./setup.py install
 
 # Move notebook contents into place.
 ADD . /usr/src/jupyter-notebook
@@ -124,8 +124,8 @@ ADD requirements.txt /
 RUN pip install -r /requirements.txt && rm -rf /root/.cache/pip/*
 
 # Setup bokeh sample data
-ADD bokeh_download.py
-RUN python bokey_download.py
+ADD bokeh_download.py /
+RUN python /bokeh_download.py
 
 # Add a notebook profile.
 RUN mkdir -p -m 700 /root/.jupyter/ && \
