@@ -60,6 +60,13 @@ RUN apt-get update -qq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Install mysql driver
+RUN git clone https://github.com/mysql/mysql-connector-python.git
+#ADD mysql-connector-python /
+RUN cd mysql-connector-python
+RUN python setup.py build
+RUN sudo python setup.py install
+
 # Install Tini
 RUN curl -L https://github.com/krallin/tini/releases/download/v0.6.0/tini > tini && \
     echo "d5ed732199c36a1189320e6c4859f0169e950692f451c03e7854243b95f4234b *tini" | sha256sum -c - && \
@@ -83,12 +90,6 @@ RUN pip2 --no-cache-dir install ipykernel && \
     python3 -m ipykernel.kernelspec && \
     rm -rf /root/.cache
 
-# Install mysql driver
-RUN git clone https://github.com/mysql/mysql-connector-python.git
-ADD mysql-connector-python /
-RUN cd /mysql-connector-python
-RUN python ./setup.py build
-RUN sudo python ./setup.py install
 
 # Move notebook contents into place.
 ADD . /usr/src/jupyter-notebook
