@@ -38,6 +38,7 @@ RUN apt-get update -qq && \
         curl \
         git \
 	wget \
+	pico \
         language-pack-en \
         libcurl4-openssl-dev \
         libffi-dev \
