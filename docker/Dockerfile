@@ -61,7 +61,7 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists/*
 
 # Install mysql driver
-RUN git clone https://github.com/mysql/mysql-connector-python.git /tmp/
+RUN git clone https://github.com/mysql/mysql-connector-python.git /tmp/mysql-connector-python
 RUN cd /tmp/mysql-connector-python
 RUN pwd
 RUN python /tmp/mysql-connector-python/setup.py build
