@@ -1,17 +1,17 @@
-docker run -t -i --net=bridge gizm00/pycon2016_lamp /bin/bash
-
-restart apache: /etc/init.d/apache2 restart
+docker run -t -i -p 3306:3306 --net=bridge --name=pycon2016_lamp  gizm00/pycon2016_lamp /bin/bash 
 get LAMP container ip, first line of: ifconfig | grep 'inet addr'
+run lamp_startup.sh
 
 git pycon2016 to local dir. cd to that dir
 
 start ipython instance
-docker run --rm -it --net=bridge -p 8888:8888 -v "$(pwd):/notebooks" gizm00/pycon2016
-
-once started launch the notebook in the background:
+docker run --rm -it --net=bridge -p 8888:8888 --name=pycon2016_notebooks -v "$(pwd):/notebooks" gizm00/pycon2016
 source docker/start-notebook.sh
 
-have a config variable to capture the address of the LAMP container
+goto config.py and change
+DB_HOST = docker ip
+LAMP_IP = ip from LAMP container, above
+
 test with 
 req = requests.get('http://172.17.0.2')
 print(req.text)
