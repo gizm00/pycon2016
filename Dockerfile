@@ -22,7 +22,7 @@ ENV LC_ALL en_US.UTF-8
 ENV PYTHONIOENCODING UTF-8
 
 # Move notebook contents into place.
-ADD ../notebooks/ /
+ADD notebooks/ /
 
 # Remove preinstalled copy of python that blocks our ability to install development python.
 RUN DEBIAN_FRONTEND=noninteractive apt-get remove -yq \
@@ -98,11 +98,11 @@ RUN pip install notebook
 #RUN pip3 install --no-cache-dir notebook[test] && nosetests -v notebook
 
 # Add class content
-ADD requirements.txt /
+ADD docker/requirements.txt /
 RUN pip install -r /requirements.txt && rm -rf /root/.cache/pip/*
 
 # Setup bokeh sample data
-ADD bokeh_download.py /
+ADD docker/bokeh_download.py /
 RUN python3 /bokeh_download.py
 
 # Add a notebook profile.
@@ -110,7 +110,7 @@ RUN mkdir -p -m 700 /root/.jupyter/ && \
     echo "c.NotebookApp.ip = '*'" >> /root/.jupyter/jupyter_notebook_config.py
 
 # add startup script for notebook
-COPY start-notebook.sh /usr/local/bin/
+COPY docker/start-notebook.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/start-notebook.sh
 
 VOLUME /notebooks
