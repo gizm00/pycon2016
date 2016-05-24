@@ -21,9 +21,6 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 ENV PYTHONIOENCODING UTF-8
 
-# Move notebook contents into place.
-ADD notebooks/ /home/
-
 # Remove preinstalled copy of python that blocks our ability to install development python.
 RUN DEBIAN_FRONTEND=noninteractive apt-get remove -yq \
         python3-minimal \
@@ -89,13 +86,7 @@ RUN pip2 --no-cache-dir install ipykernel && \
     rm -rf /root/.cache
 
 
-
-
 RUN pip install notebook
-
-# Run tests.
-# hanging on completion, comment out for now
-#RUN pip3 install --no-cache-dir notebook[test] && nosetests -v notebook
 
 # Add class content
 ADD docker/requirements.txt /
@@ -113,7 +104,6 @@ RUN mkdir -p -m 700 /root/.jupyter/ && \
 COPY docker/start-notebook.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/start-notebook.sh
 
-#VOLUME /notebooks
 WORKDIR /home/notebooks
 
 EXPOSE 8888
