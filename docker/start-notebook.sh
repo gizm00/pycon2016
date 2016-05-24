@@ -4,7 +4,7 @@ git clone https://github.com/mysql/mysql-connector-python.git /tmp/mysql-connect
 cd /tmp/mysql-connector-python
 python ./setup.py build
 sudo python ./setup.py install
-cd /notebooks
+cd /home/notebooks
 jupyter notebook &> /dev/null &
 
 

@@ -22,7 +22,7 @@ ENV LC_ALL en_US.UTF-8
 ENV PYTHONIOENCODING UTF-8
 
 # Move notebook contents into place.
-ADD notebooks/ /
+ADD notebooks/ /home/
 
 # Remove preinstalled copy of python that blocks our ability to install development python.
 RUN DEBIAN_FRONTEND=noninteractive apt-get remove -yq \
@@ -113,8 +113,8 @@ RUN mkdir -p -m 700 /root/.jupyter/ && \
 COPY docker/start-notebook.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/start-notebook.sh
 
-VOLUME /notebooks
-WORKDIR /notebooks
+#VOLUME /notebooks
+WORKDIR /home/notebooks
 
 EXPOSE 8888
 
