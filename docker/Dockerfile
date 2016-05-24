@@ -21,6 +21,9 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 ENV PYTHONIOENCODING UTF-8
 
+# Move notebook contents into place.
+ADD ../notebooks/ /
+
 # Remove preinstalled copy of python that blocks our ability to install development python.
 RUN DEBIAN_FRONTEND=noninteractive apt-get remove -yq \
         python3-minimal \
@@ -86,8 +89,6 @@ RUN pip2 --no-cache-dir install ipykernel && \
     rm -rf /root/.cache
 
 
-# Move notebook contents into place.
-ADD notebooks/ /
 
 
 RUN pip install notebook
