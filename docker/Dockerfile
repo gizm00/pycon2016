@@ -121,7 +121,7 @@ RUN pip install -r /requirements.txt && rm -rf /root/.cache/pip/*
 
 # Setup bokeh sample data
 ADD bokeh_download.py /
-RUN python /bokeh_download.py
+RUN python3 /bokeh_download.py
 
 # Add a notebook profile.
 RUN mkdir -p -m 700 /root/.jupyter/ && \
