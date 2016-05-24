@@ -29,7 +29,7 @@ class Storage :
 	# return requested query from storage in a dataframe
 	def get(self, query_string) :
 		try:
-			df = pd.read_sql(query_string, self.db_engine)
+			df = pd.read_sql(query_string, self.db_engine, index_col='index')
 		except Exception as ex:
 			print("Storage.get failed")
 			print(ex)

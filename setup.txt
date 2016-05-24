@@ -2,12 +2,15 @@ docker run -t -i -p 3306:3306 --net=bridge --name=pycon2016_lamp  gizm00/pycon20
 get LAMP container ip, first line of: ifconfig | grep 'inet addr'
 run lamp_startup.sh
 
-git pycon2016 to local dir. cd to that dir
+on your machine:
+git clone https://github.com/gizm00/pycon2016.git
+cd pycon2016/notebooks
 
 start ipython instance
 docker run --rm -it --net=bridge -p 8888:8888 --name=pycon2016_notebooks -v "$(pwd):/notebooks" gizm00/pycon2016
-source docker/start-notebook.sh
+start-notebook.sh
 
+nav to http://<your docker ip>:8888/
 goto config.py and change
 DB_HOST = docker ip
 LAMP_IP = ip from LAMP container, above
