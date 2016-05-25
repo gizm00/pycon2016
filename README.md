@@ -1,8 +1,11 @@
 Repo for Pycon 2016 Tutorial The Fellowship of The Data
 
-##5/25/16 - Hi everyone! Please verify you can run the test_notbook. Notebooks for the tutorial are still in progress, I'll email the class when the material is finalized in the next few days  
+### 5/25/16 - Hi everyone! Please verify you can run the test_notbook. Notebooks for the tutorial are still in progress, I'll email the class when the material is finalized in the next few days  
 
-## Using Docker
+## Setup Using Docker  
+
+Should you run into problems setting up with Docker please ping me at the address in the class email!
+
 0. Start docker, note the docker IP as YOUR_DOCKER_IP
 
 1. Get the LAMP stack for hosting tutorial files from Docker:  
@@ -44,8 +47,9 @@ At this point youre ready to run the test notebook to verify your setup
 3. Open the test_notebook in the Jupyter tree and run the notebook. The resulting plot should be a map of Oregon, hover over points to see campground name and telephone (where available). You can check the notebook outputs against notebooks/test_notebook_output.pdf
 
 
-## Installing locally
+## Setup locally
 
+I strongly suggest using the Docker containers for the tutorial, but here are some notes if you want to run the materials locally. Given the diversity of local machine setups its unlikely I will have time to devote to helping you debug your personal machine should you run into problems, FYI
 
 1. For a list of required pip packages see 'pycon2016/docker/requirements.txt'  
 
