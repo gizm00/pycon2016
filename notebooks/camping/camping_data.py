@@ -2,21 +2,31 @@
 import pandas as pd
 from camping import storage
 
-class Data:
+class WebData:
 
-	def __init__(self):
+	def __init__(self, storage_name):
 		self.df = pd.DataFrame()
 		self.db = storage.Storage()
+		self.name = storage_name
 
+	# get the info from the web interface
+	def get(self) :
+		assert False, 'camping_data.Data.get(): extract must be defined'
+
+	# extract info from the web interface
 	def extract(self) :
 		# fill in with data extraction code
-		assert False, 'get extract must be defined'
+		assert False, 'camping_data.Data.extract(): extract must be defined'
 
 	def store(self, name):
 		# code for storing self.df
 		self.db.put(self.df, name, 'replace')
 
-	def retrieve(self, query):
-		return self.db.get(query)
+	def retrieve(self):
+		if self.name:
+			query = "select * from " + self.name
+			return self.db.get()
+		else:
+			print("camping_data.Data.retrieve(): storage_name is undefined")
 
 
