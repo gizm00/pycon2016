@@ -7,7 +7,7 @@ git clone https://github.com/gizm00/pycon2016.git
 cd pycon2016/notebooks
 
 start ipython instance
-docker run --rm -it --net=bridge -p 8888:8888 --name=pycon2016_notebooks -v "$(pwd):/notebooks" gizm00/pycon2016
+docker run --rm -it --net=bridge -p 8888:8888 --name=pycon2016_notebooks -v "$(pwd):/home/notebooks" gizm00/pycon2016
 start-notebook.sh
 
 nav to http://<your docker ip>:8888/
