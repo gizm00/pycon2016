@@ -9,3 +9,4 @@ scratch.ipynb
 docker/images/
 mysql-connector-python/
 notebooks/Plot*
+*.pptx
