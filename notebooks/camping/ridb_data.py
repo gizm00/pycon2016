@@ -2,7 +2,7 @@
 import requests
 import pandas as pd
 import config
-from camping import WebData
+from camping.WebData import WebData
 from geopy.distance import vincenty
 import itertools
 import numpy as np

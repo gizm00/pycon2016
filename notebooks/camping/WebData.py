@@ -1,12 +1,12 @@
 # Abstract superclass to provide a unified interface for data extraction
 import pandas as pd
-from camping import storage
+from camping.storage import Storage
 
-class WebData:
+class WebData():
 
 	def __init__(self, storage_name):
 		self.df = pd.DataFrame()
-		self.db = storage.Storage()
+		self.db = Storage()
 		self.name = storage_name
 		self.web_data = pd.DataFrame()
 
