@@ -8,6 +8,7 @@ class WebData:
 		self.df = pd.DataFrame()
 		self.db = storage.Storage()
 		self.name = storage_name
+		self.web_data = pd.DataFrame()
 
 	# get the info from the web interface
 	def get(self) :
@@ -18,14 +19,14 @@ class WebData:
 		# fill in with data extraction code
 		assert False, 'camping_data.Data.extract(): extract must be defined'
 
-	def store(self, name):
+	def store(self):
 		# code for storing self.df
-		self.db.put(self.df, name, 'replace')
+		self.db.put(self.df, self.name, 'replace')
 
 	def retrieve(self):
 		if self.name:
 			query = "select * from " + self.name
-			return self.db.get()
+			return self.db.get(query)
 		else:
 			print("camping_data.Data.retrieve(): storage_name is undefined")
 

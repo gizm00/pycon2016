@@ -10,7 +10,7 @@ class Storage :
 	# setup database connection to mysql unless otherwise specified
 	def __init__(self, connPre='mysql+pymysql://') :
 		connectStr = connPre + config.DB_USER + ":" + config.DB_PASS + "@" + config.DB_HOST +  "/" + config.DB_NAME
-		print(connectStr)
+		#print(connectStr)
 		try:
 			self.db_engine = create_engine(connectStr)
 		except Exception as ex:

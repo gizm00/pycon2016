@@ -1,10 +1,12 @@
 # subclass of camping_data.Data for reading RIDB
-
 import requests
 import pandas as pd
-#import json
 import config
 from camping import camping_data
+from geopy.distance import vincenty
+import itertools
+import numpy as np
+import config
 
 class RidbData(camping_data.WebData):
 		
@@ -17,9 +19,19 @@ class RidbData(camping_data.WebData):
 		self.web_data = pd.read_json(request_url)
 
 	def extract(self):
-		if not self.web_data:
+		if self.web_data.empty:
 			print("RidbData.extract(): self.web_data undefined. Run get() first")
 			return
-			
-		points = itertools.combinations(self.web_data[['FacilityLatitude', 'FacilityLongitude']].as_matrix(), 2) 
 
+		# in this example the extraction is the web_data
+		self.df = self.web_data
+
+	def vincenty_matrix(group):
+	    group_matrix = pd.DataFrame(index = group.index, columns = group.index)  
+	    for c in group_matrix.columns:
+	        lat1 = group.columns.get_loc("FacilityLatitude")
+	        long1 = group.columns.get_loc("FacilityLongitude")
+	        lat2 = group.FacilityLatitude[c]
+	        long2 = group.FacilityLongitude[c]
+	        group_matrix[c] = group.apply(lambda x: vincenty((x[lat1], x[long1]), (lat2,long2)).miles, axis=1)
+	    return group_matrix.as_matrix()
