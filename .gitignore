@@ -6,5 +6,6 @@ notebooks/.ipynb_checkpoints/
 mysql-connector-python/
 Plot test.ipynb
 scratch.ipynb
-images/
+docker/images/
 mysql-connector-python/
+notebooks/Plot*
