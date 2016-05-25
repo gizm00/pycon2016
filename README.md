@@ -20,12 +20,14 @@ Should you run into problems setting up with Docker please ping me at the addres
 
 Your LAMP container should now be ready to serve files for the tutorial. 
 
-1. In a new terminal tab/window clone the tutorial repo to your local machine  
+1. In a new terminal tab/window get the test_setup tag for the [Github repo](https://github.com/gizm00/pycon2016/releases)  
 
-	`$ git clone https://github.com/gizm00/pycon2016.git`  
-	`$ cd pycon2016/notebooks`  
+	`$ wget https://github.com/gizm00/pycon2016/archive/test_setup.tar.gz`  
+	`$ gunzip test_setup.tar.gz`   
+	`$ tar -xvf test_setup.tar`  
+	`$ cd pycon2016-test_setup/notebooks`    
 
-In the pycon2016/notebooks directory, start the tutorial container  
+In the pycon2016-test_setup/notebooks directory, start the tutorial container  
 
 1. Get the tutorial image from Docker. This will take some time to download, good time for second breakfast:  
 	`$ docker run --rm -it --net=bridge -p 8888:8888 --name=pycon2016_notebooks -v "$(pwd):/home/notebooks" gizm00/pycon2016`  
