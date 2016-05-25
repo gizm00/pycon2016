@@ -1,7 +1,8 @@
 Repo for Pycon 2016 Tutorial The Fellowship of The Data
 
-For best results, follow instructions below :)
+##5/25/16 - Hi everyone! Please verify you can run the test_notbook. Notebooks for the tutorial are still in progress, I'll email the class when the material is finalized in the next few days  
 
+## Using Docker
 0. Start docker, note the docker IP as YOUR_DOCKER_IP
 
 1. Get the LAMP stack for hosting tutorial files from Docker:  
@@ -42,3 +43,26 @@ At this point youre ready to run the test notebook to verify your setup
 
 3. Open the test_notebook in the Jupyter tree and run the notebook. The resulting plot should be a map of Oregon, hover over points to see campground name and telephone (where available). You can check the notebook outputs against notebooks/test_notebook_output.pdf
 
+
+## Installing locally
+
+
+1. For a list of required pip packages see 'pycon2016/docker/requirements.txt'  
+
+2. In addition to the above packages you will need  
+
+	firefox (we will be using the firefox driver for Selenium)  
+	python 3.4.3  
+	jupyter 4.2.0
+	mysql-connector-python  
+
+3. To forgo using the pycon2016_lamp container you will need to have a local LAMP stack  
+
+	Refer to the pycon2016_lamp repo: `https://github.com/gizm00/pycon2016_lamp`  
+
+	mysql: setup users and database using the mysql_setup.sql 
+
+	apache: copy the contents of webfiles/ to your apache directory  
+
+4. Get the course materials : `git clone https://github.com/gizm00/pycon2016.git` and run the test_notebook as above
+	
