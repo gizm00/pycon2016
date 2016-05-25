@@ -4,3 +4,7 @@ __pycache__/
 out.csv
 notebooks/.ipynb_checkpoints/
 mysql-connector-python/
+Plot test.ipynb
+scratch.ipynb
+images/
+mysql-connector-python/

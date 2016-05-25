@@ -2,13 +2,13 @@
 import requests
 import pandas as pd
 import config
-from camping import camping_data
+from camping import WebData
 from geopy.distance import vincenty
 import itertools
 import numpy as np
 import config
 
-class RidbData(camping_data.WebData):
+class RidbData(WebData):
 		
 	def get(self):
 		# comment these out to use the real deal post tutorial
