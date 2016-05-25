@@ -22,7 +22,7 @@ Your LAMP container should now be ready to serve files for the tutorial
 
 1. Clone the tutorial repo to your local machine  
 	```
-	$ git clone https://github.com/gizm00/pycon2016.git
+	$ git clone https://github.com/gizm00/pycon2016.git  
 	$ cd pycon2016/notebooks
 	```
 
