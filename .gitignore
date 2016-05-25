@@ -11,3 +11,5 @@ mysql-connector-python/
 notebooks/Plot*
 *pptx
 docker/*
+config.py
+notebooks/config.py
