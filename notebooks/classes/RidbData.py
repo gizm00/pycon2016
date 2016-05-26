@@ -9,12 +9,23 @@ from pandas.io.json import json_normalize
 
 class RidbData(Data):
 
-	#dict_params = dict(apiKey = Config.RIDB_API_KEY)
-	def __init__(self, name, activity_name, dict_params):
-		self.endpoint = config.RIDB_ENDPOINT
-		self.activity = activity_name
-		self.url_params = dict(apiKey = config.RIDB_API_KEY)
-		self.name = name
+	# RIDB API specific information
+	activity_dict = dict(camping=9, hiking=14)
+	endpoint = config.RIDB_ENDPOINT
+	self.url_params = dict(apiKey = config.RIDB_API_KEY)
+
+	def __init__(self, activity, dict_params):
+		super()__init__('ridbdata')
+
+		try:
+			self.activity_id = self.activity_dict(activity)
+		except Exception as ex:
+			print("RidbMtHoodFacilities.__init__(): cannot find activity: " + activity)
+			print("Activity options are " + self.activity_dict.keys)
+			print(ex)
+			return
+
+		self.url_params.update(dict(activity_id = self.activity_id))
 		self.url_params.update(dict_params)
 
 	def extract(self):
