@@ -9,13 +9,14 @@ class CsvStorage(Storage) :
 	
 	# setup database connection to mysql unless otherwise specified
 	def __init__(self) :
-		super().__init__('csv_storage')
+		super().__init__('csvstorage')
+
 
 	# store passed dataframe object as table <name>
 	# NOTE - put overwrites by default
 	def put(self, df, name) :
 		try:
-			df.to_csv(name, Index=False)
+			df.to_csv(name + ".csv", Index=False)
 		except Exception as ex:
 			print("Storage.put failed")
 			print(ex)	
@@ -23,7 +24,7 @@ class CsvStorage(Storage) :
 	# return requested query from storage in a dataframe
 	def get(self, query_string) :
 		try:
-			df = pd.read_csv(query_string)
+			df = pd.read_csv(query_string + ".csv")
 		except Exception as ex:
 			print("Storage.get failed")
 			print(ex)

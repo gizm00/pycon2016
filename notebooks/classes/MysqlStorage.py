@@ -10,7 +10,6 @@ class MysqlStorage(Storage) :
 	
 	# setup database connection to mysql unless otherwise specified
 	def __init__(self, connPre='mysql+pymysql://') :
-		super().__init__("mysql_storage")
 		connectStr = connPre + config.DB_USER + ":" + config.DB_PASS + "@" + config.DB_HOST +  "/" + config.DB_NAME
 		#print(connectStr)
 		try:
@@ -32,7 +31,7 @@ class MysqlStorage(Storage) :
 	# return requested query from storage in a dataframe
 	def get(self, query_string) :
 		try:
-			df = pd.read_sql(query_string, self.db_engine, index_col='index')
+			df = pd.read_sql('select * from ' + query_string, self.db_engine, index_col='index')
 		except Exception as ex:
 			print("Storage.get failed")
 			print(ex)
