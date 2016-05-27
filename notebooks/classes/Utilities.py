@@ -43,3 +43,30 @@ def dedupe_by_distance(group, limit, latcol, longcol, lastupdatecol):
 			df_out = df_out.drop(least_recent.index)
 
 	return df_out
+
+def distance_matrix_dataframes(df_row, df_col) :
+	dist_matrix = pd.DataFrame(index = df_row.index, columns = df_col.index) 
+	for c in dist_matrix.columns:
+		for r in range(0,len(dist_matrix.index)) :
+			lat1 = df_row.iloc[r]['FacilityLatitude']
+			long1 = df_row.iloc[r]['FacilityLongitude']
+			lat2 = df_col.iloc[c]['FacilityLatitude']
+			long2 = df_col.iloc[c]['FacilityLongitude']
+			dist =  vincenty((lat1,long1), (lat2,long2)).miles
+			dist_matrix.iloc[r,c] = dist
+
+	return dist_matrix
+
+# get the indexes to merge df_super with df_sub based on distance between points
+# if distance between points is < limit set the indexes
+# df_super is a superset of df_sub
+def get_merge_index(df_sub, df_super, limit):
+	distance_matrix = distance_matrix_dataframes(df_sub, df_super)
+	matches = np.where(distance_matrix < limit)
+	dist_idx = np.empty(len(df_super.index)) * np.nan
+	for pairs in zip(matches[0],matches[1]):
+		row = pairs[0]
+		col = pairs[1]
+		dist_idx[col] = row
+
+	return dist_idx

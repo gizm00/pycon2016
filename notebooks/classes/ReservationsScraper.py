@@ -34,8 +34,8 @@ class ReservationsScraper(Scraper):
 	def connect_to_page(self, url):
 		try:
 			self.browser.get(url)
-			self.browser.set_script_timeout(30)
-			self.browser.set_page_load_timeout(30) # seconds
+			#self.browser.set_script_timeout(30)
+			#self.browser.set_page_load_timeout(30) # seconds
 
 		except Exception as ex:
 			print("ReservationsScraper.connect_to_page(): Unable to open url: " + url)
