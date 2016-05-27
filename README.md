@@ -1,15 +1,15 @@
 Repo for Pycon 2016 Tutorial The Fellowship of The Data
 ### UPDATE 5/27/16 - Hey folks. Glad to see some of you are working on getting up and running. Some errors you might see and how to troubleshoot:
 
-`URLError: <urlopen error [Errno 111] Connection refused>`
+`URLError: <urlopen error [Errno 111] Connection refused>`  
 
-	Usually this means the apache server needs to be restarted. To do so, execute the following in the LAMP container shell:
+	Usually this means the apache server needs to be restarted. To do so, execute the following in the LAMP container shell:  
 		`$ /etc/init.d/apache2 restart`
 
-`(pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query')`
+`(pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query')`  
 
-	Usually this means the mysql server needs to be restarted (and often occurs after you have encountered the above error and restarted apache).  To fix, restart mysql in the LAMP container shell:
-		`$ /etc/init.d/mysql restart`
+	Usually this means the mysql server needs to be restarted (and often occurs after you have encountered the above error and restarted apache).  To fix, restart mysql in the LAMP container shell:  
+		`$ /etc/init.d/mysql restart`  
 
 ### 5/25/16 - Hi everyone! Please verify you can run the test_notbook. Notebooks for the tutorial are still in progress, I'll email the class when the material is finalized in the next few days  
 
