@@ -27,15 +27,15 @@ class ReservationsScraper(Scraper):
 		self.display = Display(visible=0, size=(1024, 768))
 		self.display.start()
 
-		print('setting up web browser')
-		self.browser = webdriver.Firefox()
-		self.browser.set_window_size(1366, 768)
+		
 
 	def connect_to_page(self, url):
 		try:
+
 			self.browser.get(url)
-			#self.browser.set_script_timeout(30)
-			#self.browser.set_page_load_timeout(30) # seconds
+			self.browser.set_script_timeout(30)
+			self.browser.set_page_load_timeout(30) # seconds
+			print("browsed to reservation.html")
 
 		except Exception as ex:
 			print("ReservationsScraper.connect_to_page(): Unable to open url: " + url)
@@ -60,6 +60,12 @@ class ReservationsScraper(Scraper):
 	# input url_df expected to have columns FaciliyLatitude,FacilityLongitude,FacilityName,start_date, stay_lengthand url
 	def scrape(self, url_df):
 		df_res_info = pd.DataFrame()
+		print("getting reservation.html")
+		print('setting up web browser')
+		p = webdriver.FirefoxProfile()   
+		p.set_preference("webdriver.log.file", "/tmp/selenium_firefox")
+		self.browser = webdriver.Firefox(p)
+		self.browser.set_window_size(1366, 768)
 		
 		for index,row in url_df.iterrows() :
 			self.connect_to_page(self.local_prefix + row.url)
@@ -80,7 +86,8 @@ class ReservationsScraper(Scraper):
 		df_res_info.index = index_vals
 
 		# closedown browser
-		self.browser.close()
+		print("closing browser")
+		self.browser.quit()
 		self.display.stop()
 		return df_res_info
 

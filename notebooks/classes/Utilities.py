@@ -46,8 +46,8 @@ def dedupe_by_distance(group, limit, latcol, longcol, lastupdatecol):
 
 def distance_matrix_dataframes(df_row, df_col) :
 	dist_matrix = pd.DataFrame(index = df_row.index, columns = df_col.index) 
-	for c in dist_matrix.columns:
-		for r in range(0,len(dist_matrix.index)) :
+	for c in range(0,len(dist_matrix.columns)):
+		for r in range(0, len(dist_matrix.index)) :
 			lat1 = df_row.iloc[r]['FacilityLatitude']
 			long1 = df_row.iloc[r]['FacilityLongitude']
 			lat2 = df_col.iloc[c]['FacilityLatitude']

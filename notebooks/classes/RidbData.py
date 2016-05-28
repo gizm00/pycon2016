@@ -7,6 +7,7 @@ import json
 from classes.Data import Data
 from pandas.io.json import json_normalize
 import numpy as np
+from classes import Utilities
 
 class RidbData(Data):
 
@@ -35,8 +36,12 @@ class RidbData(Data):
 
 	def extract(self):
 		try :
+			# below is the live version, comment this out after the tutorial to access RIDB
+			#response = requests.get(url=self.endpoint,params=self.url_params)
 
-			response = requests.get(url=self.endpoint,params=self.url_params)
+			request_url = "http://" + config.LAMP_IP + '/ridb_mock.json'
+			self.df = pd.read_json(request_url)
+			
 		except Exception as ex:
 			print("RidbData.extract(): unable to get request " + self.endpoint)
 			print("with params: " + str(self.url_params))
@@ -44,19 +49,28 @@ class RidbData(Data):
 			self.df = pd.DataFrame()
 			return
 
+		"""
 		try :
 			data = json.loads(response.text)
 			self.df = json_normalize(data['RECDATA'])
-			#request_url = "http://" + config.LAMP_IP + '/ridb_mock.json'
-			#self.df = pd.read_json(request_url)
+
 
 		except Exception as ex:
 			print("RidbData.extract(): unable to read response")
 			print(ex)
+		"""
 
 		# clean up data after extraction
+		
 		self.df = self.df.replace('', np.nan)
-		self.df = self.df.drop(['GEOJSON.COORDINATES','GEOJSON.TYPE'], axis=1)
+		self.df = self.df.dropna(subset=['FacilityLatitude','FacilityLongitude'])
+		if 'GEOJSON.COORDINATES' in self.df.columns :
+			self.df = self.df.drop(['GEOJSON.COORDINATES'], axis=1)
+		if 'GEOJSON.TYPE' in self.df.columns:
+			self.df = self.df.drop(['GEOJSON.TYPE'], axis=1)
+
+		# drop duplicates
+		self.df = Utilities.dedupe_by_distance(self.df, 1, 'FacilityLatitude', 'FacilityLongitude', 'LastUpdatedDate')
 
 	def put(self):
 		if (self.df.empty) :
