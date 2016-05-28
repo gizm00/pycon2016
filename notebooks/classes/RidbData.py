@@ -34,34 +34,7 @@ class RidbData(Data):
 		self.storage = storage
 		self.name = name
 
-	def extract(self):
-		try :
-			# below is the live version, comment this out after the tutorial to access RIDB
-			#response = requests.get(url=self.endpoint,params=self.url_params)
-
-			request_url = "http://" + config.LAMP_IP + '/ridb_mock.json'
-			self.df = pd.read_json(request_url)
-			
-		except Exception as ex:
-			print("RidbData.extract(): unable to get request " + self.endpoint)
-			print("with params: " + str(self.url_params))
-			print(ex)
-			self.df = pd.DataFrame()
-			return
-
-		"""
-		try :
-			data = json.loads(response.text)
-			self.df = json_normalize(data['RECDATA'])
-
-
-		except Exception as ex:
-			print("RidbData.extract(): unable to read response")
-			print(ex)
-		"""
-
-		# clean up data after extraction
-		
+	def clean(self) :
 		self.df = self.df.replace('', np.nan)
 		self.df = self.df.dropna(subset=['FacilityLatitude','FacilityLongitude'])
 		if 'GEOJSON.COORDINATES' in self.df.columns :
@@ -72,6 +45,22 @@ class RidbData(Data):
 		# drop duplicates
 		self.df = Utilities.dedupe_by_distance(self.df, 1, 'FacilityLatitude', 'FacilityLongitude', 'LastUpdatedDate')
 
+
+	def extract(self):
+		try :	
+			request_url = "http://" + config.LAMP_IP + '/ridb_mock.json'
+			self.df = pd.read_json(request_url)
+			
+		except Exception as ex:
+			print("RidbData.extract(): unable to get request " + self.endpoint)
+			print("with params: " + str(self.url_params))
+			print(ex)
+			self.df = pd.DataFrame()
+			return
+
+		# clean up data after extraction
+		self.clean()
+		
 	def put(self):
 		if (self.df.empty) :
 			print("RidbData.put(): dataframe is empty, run get() or extract()")

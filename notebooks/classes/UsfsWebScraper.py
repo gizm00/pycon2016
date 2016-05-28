@@ -12,9 +12,6 @@ import numpy as np
 
 class UsfsWebScraper(Scraper):
 
-	def __init__(self) :
-		pass
-
 	# helper functions to extract specific fields
 	def get_area_status(self, soup) :
 		status = None
@@ -77,6 +74,10 @@ class UsfsWebScraper(Scraper):
 
 		return df_info
 
+	def get_soup(self, row): 
+		cg_req = requests.get("http://" + config.LAMP_IP + "/" + row['url'])
+		cg_soup = BeautifulSoup(cg_req.text, 'lxml')
+		return cg_soup
 
 	# extract information from USFS webpages
 	# expects row with columns url and facilityname
@@ -85,8 +86,7 @@ class UsfsWebScraper(Scraper):
 		df_out = pd.DataFrame()
 		for index,row in url_df.iterrows() :
 			cg_name = row.facilityname
-			cg_req = requests.get("http://" + config.LAMP_IP + "/" + row['url'])
-			cg_soup = BeautifulSoup(cg_req.text, 'lxml')
+			cg_soup = self.get_soup(row)
 
 			cg_status = self.get_area_status(cg_soup)
 			cg_lat = self.get_location(cg_soup, 'Latitude')
