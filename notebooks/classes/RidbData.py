@@ -43,8 +43,9 @@ class RidbData(Data):
 			self.df = self.df.drop(['GEOJSON.TYPE'], axis=1)
 
 		# drop duplicates
+		#print("dropping duplicates")
 		self.df = Utilities.dedupe_by_distance(self.df, 1, 'FacilityLatitude', 'FacilityLongitude', 'LastUpdatedDate')
-
+		#print(self.df.shape)
 
 	def extract(self):
 		try :	

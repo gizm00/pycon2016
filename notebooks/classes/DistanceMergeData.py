@@ -39,18 +39,18 @@ class DistanceMergeData(Data):
 		df_super = self.data_list[1].df
 		df_sub = self.data_list[0].df
 		merged = self.run_merge(df_sub, df_super)
+
+		# get rid of merge_index
+		#merged = merged.drop("FacilityName",axis=1)
 		self.df = self.df.append(merged)
 
 		if len(self.data_list) > 2 :
 			# continue merge process
 			for i in range(2,len(self.data_list)):
-				#df_super = self.df
-				#df_sub = self.data_list[i].df
 				df_sub = self.df
 				df_super = self.data_list[i].df
 				merged = self.run_merge(df_sub, df_super)
-				self.df = self.df.append(merged)
-
+				self.df = merged
 
 	def put(self):
 		if (self.df.empty) :
