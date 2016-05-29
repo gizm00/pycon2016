@@ -1,11 +1,11 @@
 Repo for Pycon 2016 Tutorial The Fellowship of The Data
 ### Update 5/28/16 - Ready for prime time!  
 
-Please get the latest version of the tutorial files from the repo for tomorrow:
+Please get the latest version of the tutorial files from the repo for tomorrow:  
 	`$ git clone https://github.com/gizm00/pycon2016.git`  
 	`$ cd pycon2016/notebooks`  
 	
-
+	From here you can follow the instructions under "start the tutorial container" below  
 
 
 ### UPDATE 5/27/16 - Hey folks. Glad to see some of you are working on getting up and running. Some errors you might see and how to troubleshoot:
