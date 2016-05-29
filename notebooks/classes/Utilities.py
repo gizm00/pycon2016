@@ -19,22 +19,20 @@ def distance_matrix(group, latcol,longcol):
 # when matches are found, drop the observation with the least recent lastupdateddate
 # assumes group has columns latitude, longitude, and lastupdateddate
 def dedupe_by_distance(group, limit, latcol, longcol, lastupdatecol):
-	#print(group.shape)
 	distances = distance_matrix(group, latcol, longcol)
 	df_out = group
 
 	# examine upper triangle for distance measurements under the specified limit
-	matches = np.where(np.triu(distances) < limit & (np.triu(distances)>0))
-	#print(matches)
+	matches = np.where(np.logical_and(np.triu(distances) < 0.05, np.triu(distances) > 0))
+	
 	# where FacilityNames are equal you will have false matches, weed these out
 	for pair in zip(matches[0],matches[1]):
-
 		try :
-			pair_sub = df_out.loc[np.array(pair)]
+			pair_sub = df_out.iloc[np.array(pair)]
 		except:
 			#print('pair not in array')
 			continue
-		#print("facility names: " + str(pair_sub.iloc[0].FacilityName) + " " + str(pair_sub.iloc[1].FacilityName))
+
 		if pair_sub.iloc[0].FacilityName == pair_sub.iloc[1].FacilityName :
 			#print('same facility, do not delete')
 			continue;
@@ -42,7 +40,6 @@ def dedupe_by_distance(group, limit, latcol, longcol, lastupdatecol):
 		# if a member of the matched pair has already been dropped pair_sub will
 		# contain an NaN row, drop
 		pair_sub = pair_sub.dropna(subset=['FacilityName'])
-		#print(pair_sub.shape)
 
 		# if only one pair member remains, do not remove. skip to the next pair
 		if pair_sub[lastupdatecol].count() < 2:
@@ -51,12 +48,12 @@ def dedupe_by_distance(group, limit, latcol, longcol, lastupdatecol):
 		least_recent = pair_sub[pair_sub[lastupdatecol] != max(pair_sub[lastupdatecol])]
 		if least_recent.empty :
 			# both observations have the same updated date, drop first one
-			print("drop first")
-			print(pair_sub.iloc[0]['FacilityName'])
+			#print("drop first")
+			#print(pair_sub.iloc[0]['FacilityName'])
 			df_out = df_out.drop(pair_sub.index[0])
 		else :
-			print("drop least recent")
-			print(least_recent.FacilityName)
+			#print("drop least recent")
+			#print(least_recent.FacilityName)
 			df_out = df_out.drop(least_recent.index)
 
 		#print(df_out.shape)

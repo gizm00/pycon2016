@@ -29,7 +29,7 @@ class DistanceMergeData(Data):
 		self.data_list = data_list
 
 	def run_merge(self, df_sub, df_super):
-		merge_idx = Utilities.get_merge_index(df_sub,df_super, 0.01)
+		merge_idx = Utilities.get_merge_index(df_sub,df_super, 0.2)
 		df_super = df_super.assign(merge_index=merge_idx.astype(int))
 		df_sub = df_sub[df_sub.columns[~df_sub.columns.isin(df_super.columns)]]
 		merged = pd.merge(df_super, df_sub, how='left', left_on='merge_index', right_index = True)
