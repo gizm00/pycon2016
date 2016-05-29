@@ -1,4 +1,13 @@
 Repo for Pycon 2016 Tutorial The Fellowship of The Data
+### Update 5/28/16 - Ready for prime time!  
+
+Please get the latest version of the tutorial files from the repo for tomorrow:
+	`$ git clone https://github.com/gizm00/pycon2016.git`  
+	`$ cd pycon2016/notebooks`  
+	
+
+
+
 ### UPDATE 5/27/16 - Hey folks. Glad to see some of you are working on getting up and running. Some errors you might see and how to troubleshoot:
 
 ##### `URLError: <urlopen error [Errno 111] Connection refused>`  
@@ -31,14 +40,11 @@ Should you run into problems setting up with Docker please ping me at the addres
 
 Your LAMP container should now be ready to serve files for the tutorial. 
 
-1. In a new terminal tab/window get the test_setup tag for the [Github repo](https://github.com/gizm00/pycon2016/releases)  
+In a new window clone the tutorial files from Github  
+	`git clone https://github.com/gizm00/pycon2016.git`  
+	`cd pycon2016/notebooks`  
 
-	`$ wget https://github.com/gizm00/pycon2016/archive/test_setup.tar.gz`  
-	`$ gunzip test_setup.tar.gz`   
-	`$ tar -xvf test_setup.tar`  
-	`$ cd pycon2016-test_setup/notebooks`    
-
-In the pycon2016-test_setup/notebooks directory, start the tutorial container  
+In the pycon2016/notebooks directory, start the tutorial container  
 
 1. Get the tutorial image from Docker. This will take some time to download, good time for second breakfast:  
 	`$ docker run --rm -it --net=bridge -p 8888:8888 --name=pycon2016_notebooks -v "$(pwd):/home/notebooks" gizm00/pycon2016`  
