@@ -1,30 +1,7 @@
-Repo for Pycon 2016 Tutorial The Fellowship of The Data
-### Update 5/28/16 - Ready for prime time!  
-
-Please get the latest version of the tutorial files from the repo for tomorrow:  
-	`$ git clone https://github.com/gizm00/pycon2016.git`  
-	`$ cd pycon2016/notebooks`  
-	
-	From here you can follow the instructions under "start the tutorial container" below  
-
-
-### UPDATE 5/27/16 - Hey folks. Glad to see some of you are working on getting up and running. Some errors you might see and how to troubleshoot:
-
-##### `URLError: <urlopen error [Errno 111] Connection refused>`  
-
-Usually this means the apache server needs to be restarted. To do so, execute the following in the LAMP container shell:  
-		`$ /etc/init.d/apache2 restart`
-
-##### `(pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query')`  
-
-Usually this means the mysql server needs to be restarted (and often occurs after you have encountered the above error and restarted apache).  To fix, restart mysql in the LAMP container shell:  
-		`$ /etc/init.d/mysql restart`  
-
-### 5/25/16 - Hi everyone! Please verify you can run the test_notbook. Notebooks for the tutorial are still in progress, I'll email the class when the material is finalized in the next few days  
+Repo for Object Oriented Web Data Pipelines in Python
 
 ## Setup Using Docker  
 
-Should you run into problems setting up with Docker please ping me at the address in the class email!
 
 0. Start docker, note the docker IP as YOUR_DOCKER_IP
 
@@ -69,7 +46,7 @@ At this point youre ready to run the test notebook to verify your setup
 
 ## Setup locally
 
-I strongly suggest using the Docker containers for the tutorial, but here are some notes if you want to run the materials locally. Given the diversity of local machine setups its unlikely I will have time to devote to helping you debug your personal machine should you run into problems, FYI
+I strongly suggest using the Docker containers for the tutorial, but here are some notes if you want to run the materials locally. 
 
 1. For a list of required pip packages see 'pycon2016/docker/requirements.txt'  
 
@@ -89,4 +66,25 @@ I strongly suggest using the Docker containers for the tutorial, but here are so
 	apache: copy the contents of webfiles/ to your apache directory  
 
 4. Get the course materials : `git clone https://github.com/gizm00/pycon2016.git` and run the test_notebook as above
+Please get the latest version of the tutorial files from the repo for tomorrow:  
+	`$ git clone https://github.com/gizm00/pycon2016.git`  
+	`$ cd pycon2016/notebooks`  
+	
+
+
+### Some errors you might see and how to troubleshoot:
+
+##### `URLError: <urlopen error [Errno 111] Connection refused>`  
+
+Usually this means the apache server needs to be restarted. To do so, execute the following in the LAMP container shell:  
+		`$ /etc/init.d/apache2 restart`
+
+##### `(pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query')`  
+
+Usually this means the mysql server needs to be restarted (and often occurs after you have encountered the above error and restarted apache).  To fix, restart mysql in the LAMP container shell:  
+		`$ /etc/init.d/mysql restart`  
+
+
+
+
 	
