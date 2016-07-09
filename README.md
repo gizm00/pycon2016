@@ -37,11 +37,11 @@ At this point youre ready to run the test notebook to verify your setup
 
 2. Update config.py with the values you noted above:
 	LAMP_IP = your LAMP_IP  
-	HOST_IP = YOUR_DOCKER_IP  
+	DB_HOST = YOUR_DOCKER_IP  
 
 3. Save the updated config.py  
 
-4. Open the test_notebook in the Jupyter tree and run the notebook. The resulting plot should be a map of Oregon, hover over points to see campground name and telephone (where available). You can check the notebook outputs against notebooks/test_notebook_output.pdf
+4. Open the test_notebook in the Jupyter tree and run the notebook. The resulting plot should be a map titled "Oregon Counties." Hover over the blue points to see campground name and telephone (where available). You can check the notebook outputs against notebooks/test_notebook_output.pdf
 
 
 ## Setup locally
