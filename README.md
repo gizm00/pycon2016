@@ -43,7 +43,7 @@ At this point youre ready to run the test notebook to verify your setup
 
 4. Open the test_notebook in the Jupyter tree and run the notebook. The resulting plot should be a map titled "Oregon Counties." Hover over the blue points to see campground name and telephone (where available). You can check the notebook outputs against notebooks/test_notebook_output.pdf
 
-### To get the registration code
+### To get the eventbrite registration discount code
 Hover over any of the blue dots on the Oregon Counties map. The registration code is the Secret field.
 
 
