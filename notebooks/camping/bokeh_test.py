@@ -26,7 +26,9 @@ def create_plot(ridb) :
 
 	TOOLS="pan,wheel_zoom,box_zoom,reset,save"
 
-	df_source = ColumnDataSource(data=ridb[['FacilityName','FacilityPhone']])
+	ridb = ridb.assign(Secret = "TRILLIUM")
+
+	df_source = ColumnDataSource(data=ridb[['FacilityName','FacilityPhone','Secret']])
 	p = figure(title="Oregon Counties", tools=TOOLS)
 
 	p.circle(lon, lat, size=8, color='navy', alpha=1, source=df_source, name='geo_points')
@@ -36,8 +38,9 @@ def create_plot(ridb) :
 	          line_color="black", line_width=0.5)
 
 
+
 	hover = HoverTool(names=['geo_points'])
-	hover.tooltips = [(c, '@' + c) for c in ridb[['FacilityName','FacilityPhone']].columns]
+	hover.tooltips = [(c, '@' + c) for c in ridb[['FacilityName','FacilityPhone','Secret']].columns]
 	p.add_tools(hover)
 
 	return p
