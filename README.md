@@ -3,7 +3,7 @@ Repo for Object Oriented Web Data Pipelines in Python
 
 ## Setup Using Docker  
 
-If you don't have Docker installed start by heading to [https://www.docker.com/products/docker]. Docker is available for Windows, MacOS, and Linux 
+If you don't have Docker installed start by heading to https://www.docker.com/products/docker. Docker is available for Windows, MacOS, and Linux 
 
 0. Start docker, note the docker IP as YOUR_DOCKER_IP
 
